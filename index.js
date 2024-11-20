@@ -1,14 +1,11 @@
 require('dotenv').config()
-const sequelize = require('./db')
+const express = require('express');
+const app = express();
 
-const main = async () => {
-  try {
-    await sequelize.authenticate()
-    console.log('Connection has been established successfully.')
-    sequelize.close()
-  } catch (error) {
-    console.error('Unable to connect to the database:', error)
-  }
-}
+app.use(express.json());
+app.use('/api/blogs', require('./routes/blogs'));
 
-main()
+const port = 3000;
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
