@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Blog = require('../models/blog');
+const { Blog } = require('../models');
 
 router.get('/', async (req, res) => {
   try {
@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
     res.json(blogs);
   } catch (error) {
     console.error(error)
-    res.status(500).json({ message: 'Error fetching blogs' });
+    res.status(400).json({ error });
   }
 });
 
@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
     res.json(blog);
   } catch (error) {
     console.error(error)
-    res.status(500).json({ message: 'Error creating blog' });
+    res.status(400).json({ error });
   }
 });
 
@@ -26,10 +26,10 @@ router.delete('/:id', async (req, res) => {
   try {
     const id = req.params.id;
     await Blog.destroy({ where: { id } });
-    res.json({ message: 'Blog deleted successfully' });
+    res.status(204).end();
   } catch (error) {
     console.error(error)
-    res.status(500).json({ message: 'Error deleting blog' });
+    res.status(400).json({ error });
   }
 });
 

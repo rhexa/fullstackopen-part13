@@ -1,10 +1,9 @@
-require('dotenv').config()
 const { QueryTypes } = require('sequelize');
-const sequelize = require('./db')
+const { sequelize, connectToDatabase } = require('./util/db')
 
 const cli = async () => {
   try {
-    await sequelize.authenticate()
+    await connectToDatabase()
     const blogs = await sequelize.query('SELECT * FROM blogs', { type: QueryTypes.SELECT })
     blogs.forEach(blog => console.log(`${blog.author}: '${blog.title}', ${blog.likes} likes`))
     sequelize.close()
