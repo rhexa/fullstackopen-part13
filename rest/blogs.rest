@@ -25,3 +25,34 @@ Content-Type: application/json
 
 ### Delete a blog
 DELETE {{blogsUrl}}/7
+
+
+###########################################
+#### TEST ####
+
+### Create a new blog with bad format
+POST {{blogsUrl}}
+Content-Type: application/json
+
+{
+  "auth": "John Doe",
+  "uri": "https://example.com/new-blog",
+  "title": "My new blog post",
+  "likes": 0
+}
+
+### Update blog likes with wrong format
+PUT {{blogsUrl}}/10
+Content-Type: application/json
+
+{
+  "like": 5
+}
+
+### Update blog likes with non existing id
+PUT {{blogsUrl}}/100
+Content-Type: application/json
+
+{
+  "like": 5
+}
