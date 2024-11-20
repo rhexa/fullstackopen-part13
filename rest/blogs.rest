@@ -15,5 +15,13 @@ Content-Type: application/json
   "likes": 0
 }
 
+### Update blog likes
+PUT {{blogsUrl}}/10
+Content-Type: application/json
+
+{
+  "likes": 5
+}
+
 ### Delete a blog
 DELETE {{blogsUrl}}/7
