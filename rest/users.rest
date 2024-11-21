@@ -1,0 +1,31 @@
+@userUrl = http://localhost:3000/api/users
+
+### Get all users
+GET {{userUrl}}
+
+### Create a new user
+POST {{userUrl}}
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "username": "johndoe",
+  "password": "mysecretpassword"
+}
+
+### Update a user's username
+PUT {{userUrl}}/johndoe
+Content-Type: application/json
+
+{
+  "username": "newjohndoe"
+}
+
+### Login
+POST {{userUrl}}/login
+Content-Type: application/json
+
+{
+  "username": "johndoe",
+  "password": "mysecretpassword"
+}
