@@ -9,16 +9,16 @@ Content-Type: application/json
 
 {
   "name": "John Doe",
-  "username": "johndoe",
+  "username": "johndoe@john.com",
   "password": "mysecretpassword"
 }
 
 ### Update a user's username
-PUT {{userUrl}}/johndoe
+PUT {{userUrl}}/johndoe@john.com
 Content-Type: application/json
 
 {
-  "username": "newjohndoe"
+  "username": "newjohndoe@john.com"
 }
 
 ### Login
@@ -26,6 +26,19 @@ POST {{userUrl}}/login
 Content-Type: application/json
 
 {
+  "username": "johndoe",
+  "password": "mysecretpassword"
+}
+
+#########################################
+#### Test ####
+
+### Create a new user using bad username
+POST {{userUrl}}
+Content-Type: application/json
+
+{
+  "name": "John Doe",
   "username": "johndoe",
   "password": "mysecretpassword"
 }
