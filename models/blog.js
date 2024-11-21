@@ -10,7 +10,8 @@ Blog.init({
     autoIncrement: true
   },
   author: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false
   },
   url: {
     type: DataTypes.STRING,
@@ -22,12 +23,13 @@ Blog.init({
   },
   likes: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: false,
+    defaultValue: 0
   }
 }, {
   sequelize,
-  modelName: 'Blog',
-  timestamps: false,
+  modelName: 'blog',
+  timestamps: true,
   underscored: true
 });
 

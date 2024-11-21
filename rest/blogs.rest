@@ -20,7 +20,7 @@ Content-Type: application/json
 ##### create blog
 POST {{blogsUrl}}
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInVzZXJuYW1lIjoiam9obmRvZUBqb2huLmNvbSIsImlhdCI6MTczMjE4MTc2M30.tDLPRVCwPzPO8DRHnthbyoJzCi6inp4oo7XonCGIia8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqb2huZG9lQGpvaG4uY29tIiwiaWF0IjoxNzMyMjEwOTAyfQ.v2fqJZAul_0CSmHzqMoe1BL2DXA45XBbW6u_0OZ7lOo
 
 {
   "author": "John Doe",
