@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { Blog, User } = require('../models');
 const { tokenExtractor } = require('../util/middlewares');
-const { Op } = require('sequelize');
+const sequelize = require('sequelize');
+const { Op } = sequelize
 
 router.get('/', async (req, res) => {
   const search = req.query.search;
@@ -27,7 +28,10 @@ router.get('/', async (req, res) => {
     include: {
       model: User
     },
-    where
+    where,
+    order: [
+      ['likes', 'DESC']
+    ]
   });
   res.json(blogs);
 });
