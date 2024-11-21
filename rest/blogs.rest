@@ -4,6 +4,10 @@
 ### Get all blogs
 GET {{blogsUrl}}
 
+### Get all blogs with keywords
+@search = new
+GET {{blogsUrl}}?search={{search}}
+
 ### Create a new blog
 ##### Login
 POST {{baseUrl}}/api/auth/login
