@@ -34,7 +34,8 @@ Content-Type: application/json
 }
 
 ### Delete a blog
-DELETE {{blogsUrl}}/14
+DELETE {{blogsUrl}}/15
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInVzZXJuYW1lIjoiam9obmRvZUBqb2huLmNvbSIsImlhdCI6MTczMjE4MTc2M30.tDLPRVCwPzPO8DRHnthbyoJzCi6inp4oo7XonCGIia8
 
 
 ###########################################
