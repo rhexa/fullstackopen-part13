@@ -4,6 +4,9 @@
 ### Get all users
 GET {{userUrl}}
 
+### Get single user
+GET {{userUrl}}/1
+
 ### Create a new user
 POST {{userUrl}}
 Content-Type: application/json

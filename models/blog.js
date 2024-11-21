@@ -37,7 +37,10 @@ Blog.init({
   sequelize,
   modelName: 'blog',
   timestamps: true,
-  underscored: true
+  underscored: true,
+  defaultScope: {
+    attributes: { exclude: ['createdAt', 'updatedAt'] }
+  }
 });
 
 module.exports = Blog;

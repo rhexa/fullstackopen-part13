@@ -55,7 +55,7 @@ User.init({
   timestamps: true,
   underscored: true,
   defaultScope: {
-    attributes: { exclude: ['password'] }
+    attributes: { exclude: ['password', 'createdAt', 'updatedAt'] }
   },
   scopes: {
     withPassword: {
