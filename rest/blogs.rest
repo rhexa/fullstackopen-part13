@@ -1,5 +1,6 @@
 @baseUrl = http://localhost:3000
 @blogsUrl = {{baseUrl}}/api/blogs
+@authorization = bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqb2huZG9lQGpvaG4uY29tIiwiaWF0IjoxNzMyMjEyODk4fQ.BW16sVL9ht4JSCAO9Kp1aVAe_BNWJIREL_x9Bs0QKeE
 
 ### Get all blogs
 GET {{blogsUrl}}
@@ -20,12 +21,13 @@ Content-Type: application/json
 ##### create blog
 POST {{blogsUrl}}
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqb2huZG9lQGpvaG4uY29tIiwiaWF0IjoxNzMyMjEwOTAyfQ.v2fqJZAul_0CSmHzqMoe1BL2DXA45XBbW6u_0OZ7lOo
+Authorization: {{authorization}}
 
 {
   "author": "John Doe",
   "url": "https://example.com/new-blog",
   "title": "My new blog post",
+  "year": 2002,
   "likes": 0
 }
 
@@ -39,7 +41,7 @@ Content-Type: application/json
 
 ### Delete a blog
 DELETE {{blogsUrl}}/15
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInVzZXJuYW1lIjoiam9obmRvZUBqb2huLmNvbSIsImlhdCI6MTczMjE4MTc2M30.tDLPRVCwPzPO8DRHnthbyoJzCi6inp4oo7XonCGIia8
+Authorization: {{authorization}}
 
 
 ###########################################
@@ -48,11 +50,25 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInVzZXJuY
 ### Create a new blog with bad format
 POST {{blogsUrl}}
 Content-Type: application/json
+Authorization: {{authorization}}
 
 {
   "auth": "John Doe",
   "uri": "https://example.com/new-blog",
   "title": "My new blog post",
+  "likes": 0
+}
+
+### Create a new blog with bad year range
+POST {{blogsUrl}}
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+  "author": "John Doe",
+  "url": "https://example.com/new-blog",
+  "title": "My new blog post",
+  "year": 1990,
   "likes": 0
 }
 
