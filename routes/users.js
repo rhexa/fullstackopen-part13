@@ -10,6 +10,7 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
+  // Done in exercise 10
   const users = await User.findAll({
     include: {
       model: Blog

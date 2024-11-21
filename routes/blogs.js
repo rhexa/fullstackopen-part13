@@ -4,6 +4,7 @@ const { Blog, User } = require('../models');
 const { tokenExtractor } = require('../util/middlewares');
 
 router.get('/', async (req, res) => {
+  // Done in exercise 10
   const blogs = await Blog.findAll({
     include: {
       model: User
