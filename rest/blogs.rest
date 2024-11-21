@@ -5,8 +5,18 @@
 GET {{blogsUrl}}
 
 ### Create a new blog
+##### Login
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "johndoe@john.com",
+  "password": "mysecretpassword"
+}
+##### create blog
 POST {{blogsUrl}}
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInVzZXJuYW1lIjoiam9obmRvZUBqb2huLmNvbSIsImlhdCI6MTczMjE4MTc2M30.tDLPRVCwPzPO8DRHnthbyoJzCi6inp4oo7XonCGIia8
 
 {
   "author": "John Doe",
@@ -16,7 +26,7 @@ Content-Type: application/json
 }
 
 ### Update blog likes
-PUT {{blogsUrl}}/10
+PUT {{blogsUrl}}/14
 Content-Type: application/json
 
 {
@@ -24,7 +34,7 @@ Content-Type: application/json
 }
 
 ### Delete a blog
-DELETE {{blogsUrl}}/7
+DELETE {{blogsUrl}}/14
 
 
 ###########################################

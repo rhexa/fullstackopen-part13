@@ -1,4 +1,5 @@
-@userUrl = http://localhost:3000/api/users
+@baseUrl = http://localhost:3000/api
+@userUrl = {{baseUrl}}/users
 
 ### Get all users
 GET {{userUrl}}
@@ -18,15 +19,15 @@ PUT {{userUrl}}/johndoe@john.com
 Content-Type: application/json
 
 {
-  "username": "newjohndoe@john.com"
+  "username": "newjohndoe2@john.com"
 }
 
 ### Login
-POST {{userUrl}}/login
+POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
-  "username": "johndoe",
+  "username": "johndoe@john.com",
   "password": "mysecretpassword"
 }
 

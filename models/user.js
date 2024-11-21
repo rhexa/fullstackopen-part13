@@ -1,6 +1,8 @@
 const { Model, DataTypes } = require('sequelize');
 const { sequelize } = require('../util/db');
+const { JWT_SECRET } = require('../util/config');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 class User extends Model {
   static async encryptPassword (password) {
@@ -8,9 +10,21 @@ class User extends Model {
     return await bcrypt.hash(password, salt);
   };
 
-  async comparePassword(password) {
+  async isValidPassword(password) {
     return await bcrypt.compare(password, this.password);
   };
+
+  async generateToken() {
+    return new Promise((resolve, reject) => {
+      jwt.sign({ id: this.id, username: this.username }, JWT_SECRET, (err, token) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(token);
+        }
+      });
+    });
+  }
 }
 
 User.init({
