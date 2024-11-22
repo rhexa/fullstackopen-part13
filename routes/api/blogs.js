@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Blog, User } = require('../../models');
-const { tokenExtractor } = require('../../util/middlewares');
+const { sessionAuth } = require('../../util/middlewares');
 const sequelize = require('sequelize');
 const { Op } = sequelize
 
@@ -36,7 +36,7 @@ router.get('/', async (req, res) => {
   res.json(blogs);
 });
 
-router.post('/', tokenExtractor, async (req, res) => {
+router.post('/', sessionAuth, async (req, res) => {
   const user = await User.findByPk(req.decodedToken.id);
   const blog = await Blog.create({...req.body, userId: user.id});
   res.json(blog);
@@ -53,7 +53,7 @@ router.put('/:id', async (req, res) => {
   res.json(blog);
 });
 
-router.delete('/:id', tokenExtractor, async (req, res) => {
+router.delete('/:id', sessionAuth, async (req, res) => {
   const id = req.params.id;
   const blog = await Blog.findByPk(id);
   if (!blog) {

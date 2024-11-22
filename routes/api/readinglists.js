@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { ReadingList } = require('../../models');
-const { tokenExtractor } = require('../../util/middlewares');
+const { sessionAuth } = require('../../util/middlewares');
 
 router.post('/', async (req, res) => {
   const { blogId, userId } = req.body;
@@ -10,7 +10,7 @@ router.post('/', async (req, res) => {
   res.json(readingList);
 });
 
-router.put('/:id', tokenExtractor, async (req, res) => {
+router.put('/:id', sessionAuth, async (req, res) => {
   const id = req.params.id;
   const readingList = await ReadingList.unscoped().findByPk(id);
 
