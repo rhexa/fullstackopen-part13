@@ -4,6 +4,7 @@ const { AUTH_SECRET } = require('./config');
 const { sequelize } = require('./db');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const User = require('../models/user');
 
 const errorMiddleware = (error, req, res, next) => {
   
@@ -41,8 +42,9 @@ const sessionMiddleware = () => session({
   saveUninitialized: false
 })
 
-const sessionAuth = (req, res, next) => {
-  if (req.session.user) {
+const sessionAuth = async (req, res, next) => {
+  const user = await User.findByPk(req.session.user.id);
+  if (user && !user.disabled) {
     next();
   } else {
     return res.status(401).json({ message: 'Unauthorized' });
