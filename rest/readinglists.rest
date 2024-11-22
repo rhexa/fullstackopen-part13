@@ -20,12 +20,12 @@ Content-Type: application/json
 Authorization: {{token}}  
 
 {
-  "blogId": 2,
-  "userId": 1
+  "userId": 1,
+  "blogId": 1
 }
 
 ### update readinglist
-PUT {{readinglist}}/1 HTTP/1.1
+PUT {{readinglist}}/2 HTTP/1.1
 Content-Type: application/json
 Authorization: {{token}}
 

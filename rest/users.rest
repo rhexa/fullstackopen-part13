@@ -7,6 +7,12 @@ GET {{userUrl}}
 ### Get single user
 GET {{userUrl}}/1
 
+### Get single user with read true
+GET {{userUrl}}/1?read=true
+
+### Get single user with read false
+GET {{userUrl}}/1?read=false
+
 ### Create a new user
 POST {{userUrl}}
 Content-Type: application/json
