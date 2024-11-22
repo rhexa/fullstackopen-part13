@@ -33,6 +33,9 @@ ReadingList.init({
   modelName: 'readinglist',
   underscored: true,
   timestamps: false,
+  defaultScope: {
+    attributes: ['id', 'read']
+  }
 });
 
 module.exports = ReadingList;
