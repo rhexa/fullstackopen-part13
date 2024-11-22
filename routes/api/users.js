@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/user');
-const { Blog, ReadingList } = require('../models');
+const User = require('../../models/user');
+const { Blog, ReadingList } = require('../../models');
 
 router.post('/', async (req, res) => {
   await User.create(req.body);

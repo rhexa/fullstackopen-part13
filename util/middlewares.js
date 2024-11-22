@@ -1,6 +1,9 @@
-const { ValidationError, ValidationErrorItem } = require('sequelize');
-const { JWT_SECRET } = require('./config');
+const { ValidationError } = require('sequelize');
 const jwt = require('jsonwebtoken');
+const { AUTH_SECRET } = require('./config');
+const { sequelize } = require('./db');
+const session = require('express-session');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const errorMiddleware = (error, req, res, next) => {
   
@@ -18,7 +21,7 @@ const tokenExtractor = (req, res, next) => {
   const authorization = req.get('authorization');
   if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
     try {
-      req.decodedToken = jwt.verify(authorization.substring(7), JWT_SECRET);
+      req.decodedToken = jwt.verify(authorization.substring(7), AUTH_SECRET);
     } catch (error) {
       console.error(error)
       return res.status(401).json({ message: 'Invalid token' });      
@@ -29,4 +32,21 @@ const tokenExtractor = (req, res, next) => {
   next();
 };
 
-module.exports = { errorMiddleware, tokenExtractor };
+const sessionMiddleware = () => session({
+  secret: AUTH_SECRET,
+  store: new SequelizeStore({
+    db: sequelize
+  }),
+  resave: false,
+  saveUninitialized: false
+})
+
+const sessionAuth = (req, res, next) => {
+  if (req.session.user) {
+    next();
+  } else {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+}
+
+module.exports = { errorMiddleware, tokenExtractor, sessionMiddleware, sessionAuth };

@@ -1,0 +1,26 @@
+@baseUrl = http://localhost:3000
+@authUrl = {{baseUrl}}/auth
+@cook = connect.sid=s%3AHo099GgtKROhEpXq099jZ9Ft8ar8wBOK.%2BwCuWSjYxFJlV3PchSmhshn33l%2Fz2sC%2BdQmUtOmv%2BWM; Path=/; HttpOnly
+
+###
+# @name login
+POST {{authUrl}}/login
+Content-Type: application/json
+
+{
+  "username": "johndoe@john.com",
+  "password": "mysecretpassword"
+}
+
+###
+# Get response
+@session = {{login.response.headers.Set-Cookie}}
+
+###
+# @name logout
+GET {{authUrl}}/logout
+
+###
+# 
+GET {{baseUrl}}
+Cookie: {{session}}

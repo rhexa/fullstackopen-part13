@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { ReadingList } = require('../models');
-const { tokenExtractor } = require('../util/middlewares');
+const { ReadingList } = require('../../models');
+const { tokenExtractor } = require('../../util/middlewares');
 
 router.post('/', async (req, res) => {
   const { blogId, userId } = req.body;

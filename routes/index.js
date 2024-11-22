@@ -1,10 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-router.use('/blogs', require('./blogs'));
-router.use('/users', require('./users'));
-router.use('/authors', require('./authors'));
-router.use('/readinglists', require('./readinglists'));
-router.use('/auth', require('./authentication'));
+router.use('/api', require('./api'));
+router.use('/auth', require('./auth'));
 
 module.exports = router;

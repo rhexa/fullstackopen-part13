@@ -2,11 +2,16 @@ const express = require('express');
 const app = express();
 const { PORT } = require('./util/config');
 const { connectToDatabase } = require('./util/db');
-const { errorMiddleware } = require('./util/middlewares');
+const { errorMiddleware, sessionMiddleware, sessionAuth } = require('./util/middlewares');
 require('express-async-errors')
 
+app.use(sessionMiddleware());
 app.use(express.json());
-app.use('/api', require('./routes'));
+app.use(require('./routes/'));
+app.get('/', sessionAuth, (req, res) => {
+  res.send('Welcome to fullstack open part 13!')  
+});
+
 app.use(errorMiddleware)
 
 const start = async () => {
